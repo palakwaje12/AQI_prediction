@@ -1,0 +1,37 @@
+import pandas as pd
+import xgboost as xgb
+import pickle
+import os
+from category_encoders import TargetEncoder
+
+# 1. Setup Paths
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, '../data/city_day.csv')
+MODELS_DIR = os.path.join(BASE_DIR, 'models')
+os.makedirs(MODELS_DIR, exist_ok=True)
+
+print("🚀 Starting Training...")
+
+# 2. Load & Clean Data
+df = pd.read_csv(DATA_PATH)
+features = ['City', 'PM2.5', 'PM10', 'NO2', 'CO', 'O3', 'SO2']
+target = 'AQI'
+
+# Fill missing values with 0 for simplicity in this quick-fix
+df = df[features + [target]].fillna(0)
+
+# 3. Encode 'City'
+encoder = TargetEncoder(cols=['City'])
+X = encoder.fit_transform(df[features], df[target])
+y = df[target]
+
+# 4. Train XGBoost
+model = xgb.XGBRegressor(n_estimators=100, max_depth=6)
+model.fit(X, y)
+
+# 5. Save Files
+model.save_model(os.path.join(MODELS_DIR, 'aqi_xgboost_model.json'))
+with open(os.path.join(MODELS_DIR, 'city_target_encoder.pkl'), 'wb') as f:
+    pickle.dump(encoder, f)
+
+print("✅ Model trained and saved in /models/ folder!")

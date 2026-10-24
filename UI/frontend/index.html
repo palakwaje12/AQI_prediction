@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQInsight</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
+                    </svg>
+                </div>
+                <span>AQInsight</span>
+            </div>
+            <div class="nav-links">
+                <button class="nav-link active" data-page="dashboard">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-link" data-page="analysis">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    </svg>
+                    <span>Analysis</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- ================= DASHBOARD ================= -->
+        <div id="dashboard" class="page active">
+            <div class="card">
+                <div class="card-header">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                        <polyline points="2 17 12 22 22 17"/>
+                        <polyline points="2 12 12 17 22 12"/>
+                    </svg>
+                    <h2>System Overview</h2>
+                </div>
+                <p class="card-description">
+                    Advanced air quality monitoring powered by machine learning algorithms
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card blue">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-label">Total Analyses</div>
+                    <div class="stat-value">1,247</div>
+                </div>
+                <div class="stat-card purple">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-label">Accuracy Rate</div>
+                    <div class="stat-value">94.2%</div>
+                </div>
+                <div class="stat-card green">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-label">Good Air Days</div>
+                    <div class="stat-value">156</div>
+                </div>
+                <div class="stat-card orange">
+                    <div class="stat-icon">⚠️</div>
+                    <div class="stat-label">Alerts Sent</div>
+                    <div class="stat-value">43</div>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card blue">
+                    <h4>Data Insights</h4>
+                    <p>In-depth breakdown of air quality trends and metrics</p>
+                </div>
+                <div class="feature-card purple">
+                    <h4>ML Predictions</h4>
+                    <p>Random Forest algorithms for accurate forecasting</p>
+                </div>
+                <div class="feature-card green">
+                    <h4>CPCB Compliant</h4>
+                    <p>Official pollution control standards</p>
+                </div>
+                <div class="feature-card pink">
+                    <h4>Historical Analysis</h4>
+                    <p>Analyze trends from past data</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ANALYSIS ================= -->
+        <div id="analysis" class="page">
+            <div class="card">
+                <div class="card-header">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    </svg>
+                    <h2>Air Quality Analysis</h2>
+                </div>
+                <p class="card-description">
+                    Enter pollutant measurements for AQI calculation and ML predictions
+                </p>
+
+                <div class="form-container">
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Target Year</label>
+                            <input type="number" id="year" value="2024" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>CO (mg/m³)</label>
+                            <input type="number" step="any" id="co" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>NO₂ (µg/m³)</label>
+                            <input type="number" step="any" id="no2" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>O₃ (µg/m³)</label>
+                            <input type="number" step="any" id="o3" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>PM2.5 (µg/m³)</label>
+                            <input type="number" step="any" id="pm25" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>PM10 (µg/m³)</label>
+                            <input type="number" step="any" id="pm10" required>
+                        </div>
+                    </div>
+
+                    <button id="analyzeBtn" class="btn-primary">
+                        Analyze Air Quality
+                    </button>
+                </div>
+
+                <!-- RESULTS -->
+                <div id="result"></div>
+
+                <!-- ✅ GRAPH CANVAS (ADDED) -->
+                <canvas id="aqiChart" height="120" style="margin-top:30px;"></canvas>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
